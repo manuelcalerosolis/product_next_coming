@@ -39,7 +39,7 @@ class ProductTemplate(models.Model):
                 if date_next_coming == None and incoming_qty > 0:
                     date_next_coming = self._get_date_next_coming(p)
 
-                logging.getLogger('_get_date_next_coming').warning(date_next_coming)
+                logging.getLogger('date_next_coming').warning(date_next_coming)
                 
             prod_available[template.id] = {
                 "qty_available": qty_available,
@@ -49,7 +49,6 @@ class ProductTemplate(models.Model):
                 "date_next_coming": date_next_coming,
             }
 
-
         return prod_available
 
     def _get_date_next_coming(self, product):
@@ -57,9 +56,5 @@ class ProductTemplate(models.Model):
             [('order_id.state', '=', 'purchase'),
             ('product_id', '=', product.id)],
             order='date_planned asc', limit=1)    
-
-        logging.getLogger(__name__).warning('-' * 80)
-        logging.getLogger('product.id').warning(product.id)
-        logging.getLogger('line.date_planed').warning(line.date_planned)
 
         return line.date_planned
