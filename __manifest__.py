@@ -13,8 +13,8 @@
         Show a column with the date of the next delivery of a product
     """,
 
-    'author': "Xtendo",
-    'website': "http://www.xtendo.es",
+    'author': "Xtendoo",
+    'website': "http://www.xtendoo.es",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/data/ir_module_category_data.xml
