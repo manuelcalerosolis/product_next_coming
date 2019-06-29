@@ -9,10 +9,8 @@ from datetime import datetime
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    date_next_coming = fields.Datetime(
-        string='Next Coming', help="Date for next coming.",
+    date_next_coming = fields.Datetime(string='Next Coming', help="Date for next coming.",
         compute='_compute_quantities')
-        #readonly=True)
 
     def _compute_quantities_dict(self):
         
@@ -30,7 +28,7 @@ class ProductTemplate(models.Model):
                 qty_available += variants_available[p.id]["qty_available"]
                 virtual_available += variants_available[p.id]["virtual_available"]
                 incoming_qty += variants_available[p.id]["incoming_qty"]
-                incoming_qty += variants_available[p.id]["incoming_qty"]
+                outgoing_qty += variants_available[p.id]["outgoing_qty"]
 
                 logging.getLogger('product_variant_ids').warning('*' * 80)
                 logging.getLogger('p.name').warning(p.name)
