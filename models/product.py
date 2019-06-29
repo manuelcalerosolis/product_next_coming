@@ -28,7 +28,8 @@ class ProductTemplate(models.Model):
                 qty_available += variants_available[p.id]["qty_available"]
                 virtual_available += variants_available[p.id]["virtual_available"]
                 incoming_qty += variants_available[p.id]["incoming_qty"]
-                outgoing_qty += variants_available[p.id]["outgoing_qty"]
+                incoming_qty += variants_available[p.id]["incoming_qty"]
+                outgoing_qty += 33
 
                 logging.getLogger('product_variant_ids').warning('*' * 80)
                 logging.getLogger('p.name').warning(p.name)
