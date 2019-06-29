@@ -36,8 +36,8 @@ class ProductTemplate(models.Model):
                 logging.getLogger('incoming_qty').warning(incoming_qty)
                 logging.getLogger('outgoing_qty').warning(outgoing_qty)
 
-            if incoming_qty > 0:
-                date_next_coming = self._get_date_next_coming(template)
+                if date_next_coming == None and incoming_qty > 0:
+                    date_next_coming = self._get_date_next_coming(p)
 
                 logging.getLogger('_get_date_next_coming').warning(date_next_coming)
                 
