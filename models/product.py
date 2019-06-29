@@ -30,10 +30,11 @@ class ProductTemplate(models.Model):
                 incoming_qty += variants_available[p.id]["incoming_qty"]
                 outgoing_qty += variants_available[p.id]["outgoing_qty"]
 
-            logging.getLogger(__name__).warning('*' * 80)
-            logging.getLogger('p.name').warning(p.name)
-            logging.getLogger('incoming_qty').warning(incoming_qty)
-            logging.getLogger('outgoing_qty').warning(outgoing_qty)
+                logging.getLogger('product_variant_ids').warning('*' * 80)
+                logging.getLogger('p.name').warning(p.name)
+                logging.getLogger('p.id').warning(p.id)
+                logging.getLogger('incoming_qty').warning(incoming_qty)
+                logging.getLogger('outgoing_qty').warning(outgoing_qty)
 
             if incoming_qty > 0:
                 date_next_coming = self._get_date_next_coming(template)
