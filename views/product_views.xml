@@ -16,5 +16,22 @@
             </field>
         </record>
 
+        <record id="product_product_ext_form_view_cost_service" model="ir.ui.view">
+            <field name="name">product_extended.product.form.view</field>
+            <field name="model">product.template</field>
+            <field name="priority">1</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_standard_price']" position="inside">
+
+                    <label for="date_next_coming" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                    <div name="date_next_coming" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
+                        <field name="date_next_coming" options="{'currency_field': 'cost_currency_id'}"/>
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </odoo>
