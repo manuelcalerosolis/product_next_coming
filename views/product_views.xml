@@ -25,8 +25,8 @@
                 <xpath expr="//group[@name='group_standard_price']" position="inside">
 
                     <label for="date_next_coming" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
-                    <div name="date_next_coming" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
-                        <field name="date_next_coming" options="{'currency_field': 'cost_currency_id'}"/>
+                    <div name="date_next_coming" groups="base.group_user">
+                        <field name="date_next_coming"/>
                     </div>
 
                 </xpath>
