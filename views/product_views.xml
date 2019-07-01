@@ -10,7 +10,10 @@
 
                 <field name="virtual_available" position="after">
                     <field name="incoming_qty" attrs="{'invisible':[('type', '!=', 'product')]}"/>
-                    <field name="date_next_coming"/>
+                    <!--
+                    <field name="date_next_coming" attrs="{'invisible':[('type', '!=', 'product')]}"/>
+                    -->
+                    <field name="create_date" attrs="{'invisible':[('type', '!=', 'product')]}"/>
                 </field>
 
             </field>
