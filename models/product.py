@@ -10,7 +10,16 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     date_next_coming = fields.Datetime(string='Next Coming', help="Date for next coming.",
-        compute='_compute_quantities')
+        compute='_compute_quantities_dict')
+
+    def _compute_quantities(self):
+        res = self._compute_quantities_dict()
+        for template in self:
+            template.qty_available = res[template.id]['qty_available']
+            template.virtual_available = res[template.id]['virtual_available']
+            template.incoming_qty = res[template.id]['incoming_qty']
+            template.outgoing_qty = res[template.id]['outgoing_qty']
+            template.date_next_coming = res[template.id]['date_next_coming']
 
     def _compute_quantities_dict(self):
         
@@ -48,6 +57,8 @@ class ProductTemplate(models.Model):
                 "outgoing_qty": outgoing_qty,
                 "date_next_coming": date_next_coming,
             }
+
+            logging.getLogger('prod_available[template.id]').warning(prod_available[template.id])
 
         return prod_available
 

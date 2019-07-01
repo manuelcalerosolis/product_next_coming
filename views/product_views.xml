@@ -10,10 +10,10 @@
 
                 <field name="virtual_available" position="after">
                     <field name="incoming_qty" attrs="{'invisible':[('type', '!=', 'product')]}"/>
-                    <!--
                     <field name="date_next_coming" attrs="{'invisible':[('type', '!=', 'product')]}"/>
-                    -->
+                    <!--
                     <field name="create_date" attrs="{'invisible':[('type', '!=', 'product')]}"/>
+                    -->
                 </field>
 
             </field>
@@ -27,7 +27,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='group_standard_price']" position="inside">
 
-                    <label for="date_next_coming" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                    <label for="date_next_coming" groups="base.group_user"/>
                     <div name="date_next_coming" groups="base.group_user">
                         <field name="date_next_coming"/>
                     </div>
