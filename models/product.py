@@ -14,6 +14,7 @@ class ProductTemplate(models.Model):
 
     def _compute_quantities(self):
         res = self._compute_quantities_dict()
+        
         for template in self:
             template.qty_available = res[template.id]['qty_available']
             template.virtual_available = res[template.id]['virtual_available']
@@ -22,10 +23,9 @@ class ProductTemplate(models.Model):
             template.date_next_coming = res[template.id]['date_next_coming']
 
     def _compute_quantities_dict(self):
-        
         variants_available = self.mapped('product_variant_ids')._product_available()
         prod_available = {}
-        
+
         for template in self:
             qty_available = 0
             virtual_available = 0
@@ -39,17 +39,9 @@ class ProductTemplate(models.Model):
                 incoming_qty += variants_available[p.id]["incoming_qty"]
                 outgoing_qty += variants_available[p.id]["outgoing_qty"]
 
-                logging.getLogger('product_variant_ids').warning('*' * 80)
-                logging.getLogger('p.name').warning(p.name)
-                logging.getLogger('p.id').warning(p.id)
-                logging.getLogger('incoming_qty').warning(incoming_qty)
-                logging.getLogger('outgoing_qty').warning(outgoing_qty)
-
                 if date_next_coming == None and incoming_qty > 0:
                     date_next_coming = self._get_date_next_coming(p)
 
-                logging.getLogger('date_next_coming').warning(date_next_coming)
-                
             prod_available[template.id] = {
                 "qty_available": qty_available,
                 "virtual_available": virtual_available,
@@ -57,8 +49,6 @@ class ProductTemplate(models.Model):
                 "outgoing_qty": outgoing_qty,
                 "date_next_coming": date_next_coming,
             }
-
-            logging.getLogger('prod_available[template.id]').warning(prod_available[template.id])
 
         return prod_available
 
